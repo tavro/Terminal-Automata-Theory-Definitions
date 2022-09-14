@@ -27,3 +27,4 @@ $9
 &    6. A^0 = {ε} and A^k = A...A, k>=1 (kth power)
 &    7. A* = A^0 ∪ A^1 ∪ A^2 ∪... (star operation)
 @    8. A+ = AA* = ∪n>=1A^n (union of non-zero power)
+#Next Page >>

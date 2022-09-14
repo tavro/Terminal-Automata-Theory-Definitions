@@ -25,26 +25,30 @@ void print_text_no_endl(string text) {
         cout << fg_def << " " << text << "\n";
 }
 
-int main() {
-	ifstream input("definitions1.tl");
-	for(string line; getline(input, line);) {
-		char symbol = line[0];
-		string content = line.substr(1, line.length());
-		switch(symbol) {
-			case '#':
-				print_title(content);
-				break;
-			case '$':
-				print_definition(content);
-				break;
-			case '&':
-				print_text_no_endl(content);
-				break;
-			case '@':
-				print_text(content);
-				break;
-			default:
-				print_text(line);
-		}
-	}
+void read_file(string path) {
+	ifstream input(path);
+        for(string line; getline(input, line);) {
+                char symbol = line[0];
+                string content = line.substr(1, line.length());
+                switch(symbol) {
+                        case '#':
+                                print_title(content);
+                                break;
+                        case '$':
+                                print_definition(content);
+                                break;
+                        case '&':
+                                print_text_no_endl(content);
+                                break;
+                        case '@':
+                                print_text(content);
+                                break;
+                        default:
+                                print_text(line);
+                }
+        }
+}
+
+int main(int argc, char** argv) {
+	read_file(argv[1]);
 }

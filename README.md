@@ -1,1 +1,3 @@
-# Terminal-Automata-Theory-Definitions
+# Terminal Definition System
+
+Displays formated definitions in terminal

@@ -25,11 +25,34 @@ void print_text_no_endl(string text) {
         cout << fg_def << " " << text << "\n";
 }
 
+// TODO: Do not break in the middle of a word
+// TODO: Write space terminator function for paragraphs starting with ' '
+string strim_content(string str, int len) {
+	while(str.length() >= len) {
+		string subcontent = str.substr(0, len);
+		str = str.substr(len, str.length());
+
+		if(subcontent[0] == ' ') {
+			subcontent = subcontent.substr(1, subcontent.length());
+		}
+
+		print_text_no_endl(subcontent);
+	}
+
+	if(str[0] == ' ') {
+		str = str.substr(1, str.length());
+	}
+	return str;
+}
+
 void read_file(string path) {
+	int max_len = 100;
+
 	ifstream input(path);
         for(string line; getline(input, line);) {
                 char symbol = line[0];
                 string content = line.substr(1, line.length());
+
                 switch(symbol) {
                         case '#':
                                 print_title(content);
@@ -38,9 +61,11 @@ void read_file(string path) {
                                 print_definition(content);
                                 break;
                         case '&':
+				content = strim_content(content, max_len);
                                 print_text_no_endl(content);
                                 break;
                         case '@':
+				content = strim_content(content, max_len);
                                 print_text(content);
                                 break;
                         default:
